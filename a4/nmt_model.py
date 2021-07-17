@@ -175,8 +175,6 @@ class NMT(nn.Module):
         ###     Tensor Permute:
         ###         https://pytorch.org/docs/stable/tensors.html#torch.Tensor.permute
 
-
-        ### END YOUR CODE
         # 先对source_padded embedding，然后再打包（pack)
         # 小写的embedding做的是retrieve
         src_padded_embedding = F.embedding(source_padded, self.model_embeddings.source.weight)
@@ -191,6 +189,7 @@ class NMT(nn.Module):
         init_decoder_hidden = self.h_projection(torch.cat((last_hidden[0], last_hidden[1]),1))
         init_decoder_cell = self.c_projection(torch.cat((last_cell[0], last_cell[1]),1))
         dec_init_state = (init_decoder_hidden, init_decoder_cell)
+        ### END YOUR CODE
 
         return enc_hiddens, dec_init_state
 
